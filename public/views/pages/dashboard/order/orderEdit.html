@@ -1,0 +1,354 @@
+<style type="text/css">
+	.Nav_btn{
+    padding: 6px 15px;
+    color: #fff; 
+    margin-top: 16px; 
+    border: none; 
+    margin-right: 15px;
+	}
+	.panel .panel-body{
+		background: #eee;
+	}
+</style> 
+<div class="page-title clearfix">
+  	<div class="navbar-header">       
+        <a class="navbar-brand" ui-sref="orders"><i class="fa fa-list"></i>&nbsp;Order</a><div class="solution">>>>&nbsp;</i>edit</div>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right top-nav">
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="infoOrder()">
+                <i class="fa fa-info"></i>&nbsp;<span class="add">info</span>
+                </a>                  
+            </li>
+        </ul>
+    </div>
+   <div class="right-admin right-admin_toggle mobile_visible">
+        <ul>
+            <li style="float: left;"><a href class="dropdown-toggle admin-toggle" ng-click="infoOrder(orders._id)"><i class="fa fa-info"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= successMsg>
+	<div class="alert alert-success" style="margin-top: 10px;">{{successMsg}}</div>
+</div>
+<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMsg>
+	<div class="alert alert-danger" style="margin-top: 10px;">{{errorMsg}}</div>
+</div>
+<div style="padding: 15px;background: #eee;display: inline-block;width: 100%;">
+	<div class="page-title" style="color: #555;display: inline-block;padding: 0px;
+	    border-top: 0px;width: 100%;background: #fff;">
+	    <tabset class="primary-tabs" style="background-color: #eee !important; ">
+	        <tab ng-attr-active="general">
+	            <tab-heading>General</tab-heading>
+	            <form>
+	            <div class=" col-md-6 t-p">
+	                <div class="panel">
+					    <div class="panel-body">
+						    <div class="form-group">
+								<label for="vehicle_Detail">VEHICLE DETAILS</label>
+							</div>
+							<div class="form-group">
+								<span>Vehicle Number :</span>
+								<label>{{orders.vehicle_num}}</label>
+							</div>
+							<div class="form-group">
+								<span>Vehicle Brand :</span>
+								<label>{{orders.vehicle_brand}}</label>
+							</div>
+							<div class="form-group">
+								<span>Vehicle Model :</span>
+								<label>{{orders.vehicle_model}}</label>
+							</div>
+							<div class="form-group">
+								<span>Vehicle Image :</span>
+								
+	                            
+	                        </div>
+	                        <div class="form-group">
+	                        	<label>
+									<img class="img-responsive img-thumbnail pull-centar" style="width: 170px; height: 170px;" src="images/{{orders.vehicle_img}}" alt="">
+								</label>
+	                        </div>
+					    </div>
+				    </div>
+	            </div>
+	            <div class=" col-md-6 t-p">
+	                <div class="panel">
+					    <div class="panel-body">
+						    <div class="form-group">
+								<label for="exampleInputPassword1">CLIENT DETAILS</label>
+							</div>
+							<div class="form-group">
+								<span>Full Name :</span>
+								<label>{{orders.vehicle_owner_full_name}}</label>
+							</div>
+							<div class="form-group">
+								<span>Email Address :</span>
+								<label>{{orders.vehicle_owner_email}}</label>
+							</div>
+							<div class="form-group">
+								<span>Phone Number :</span>
+								<label>{{orders.vehicle_owner_phone_num}}</label>
+							</div>
+					    </div>
+				    </div>
+	            </div>
+	            <div class="col-md-12 col-sm-12 col-xs-12 t-p">
+		                <div class="modal-footer">
+		                    <button class="btn btn-primary btn-rounded" ng-click="goToSecond()">Next</button>
+		                </div>
+		            </div>
+	            </form>
+	        </tab>
+	        <tab ng-attr-active="checklist">
+	        	<tab-heading>Checklist</tab-heading>
+	        	    <div class="col-md-12 col-sm-12 col-xs-12">
+	        		<div class="row">
+	        			<div class="col-md-3 t-p" ng-repeat="checklist in orders.checklists"> 
+	                        <div class="panel"  >
+					            <div class="panel-body">
+					                <div ng-show="false" class="form-group" style="border-bottom: 1px solid #e5e5e5;">
+								        <label>{{$index+1}}</label> 
+							        </div>
+						            <div class="form-group" style="border-bottom: 1px solid #e5e5e5;">
+								        <a ng-bind='checklist.checklist_item'></a>
+							        </div>
+							        <div class="form-group">
+							        	<span>Status :</span>
+										<label>{{checklist.checklist_item_condition}}</label>
+							        </div>
+							        <div class="form-group">
+							        	<span>Notes:</span>
+							        </div>
+							        <div class="form-group">
+							        	<label for="description">{{checklist.checklist_item_notes}}
+							        	</label>
+							        </div>
+					            </div>
+				            </div>
+	                    </div>   
+	        		</div>
+	        	</div>
+	        	<div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+	                <div class="modal-footer">
+	                    <button class="btn btn-default btn-rounded" ng-click="goToFirst()">Back</button>
+	                    <button class="btn btn-primary btn-rounded" ng-click="goToThird()">Next</button>
+	                </div>
+	            </div>
+	        </tab>
+	        <tab ng-attr-active="task">
+	        	<tab-heading>Task</tab-heading>
+	        	<div class="col-md-4 t-p" ng-repeat="item in orders.tasks">
+	                <div class="panel">
+					    <div class="panel-body">
+						<form>
+						<!-- ng-model="item.order_tasks_id" -->
+						    <div class="form-group">
+						    	<span>Task id :</span>
+								<label>{{item.order_tasks_id}}</label>
+							</div>
+							<div class="form-group">
+								<span>Task Description :</span>
+								<label>{{item.description}}</label>
+							</div>
+							<div class="form-group">
+								<span>Inventory Detail :</span>
+								<label>{{item.inventory_desc}}</label>
+							</div>
+							<div class="form-group">
+								<span>Expanse :</span>
+								<label>{{item.sell_price}}</label>
+							</div>
+							<div class="form-group">
+								<span>Task Status :</span>
+								<label>{{item.task_status}}</label>
+							</div>
+							<div class="form-group"> 
+								<span>Task Start Date :</span>
+								<label>{{item.start_date | date: "MMMM d, y"}}</label>
+							</div>
+							<div class="form-group"> 
+								<span>Task End Date :</span>
+								<label>{{item.end_date | date: "MMMM d, y"}}</label>
+							</div>
+						</form>
+					    </div>
+				    </div>
+	            </div>
+	            <div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+	                <div class="modal-footer">
+	                    <button class="btn btn-default btn-rounded" ng-click="goToSecond()">Back</button>
+	                    <button ng-show="nextTask" class="btn btn-primary btn-rounded" ng-click="goToFourth()">Next</button>
+	                </div>
+	            </div> 
+	        </tab>
+	        <tab ng-show="paymentTab" ng-attr-active="payment">
+	            <tab-heading>Payment</tab-heading>
+	            <div>
+	                <div class=""><!-- class="conter-wrapper"	 -->
+	                	<div class="col-md-12">
+			                <div  id="printThisElement" class="well wellb" style="display: inline-block;width: 100%;    margin-top: 15px;margin-bottom: 0px;background: #eee;border:1px solid #eee;" >
+					                <div  class="invoice">
+						                <div class="row invoice-logo">
+							                <div class="col-md-6 dashy-left">
+								                <a href="/"><i class="fa fa-paper-plane fa-2x Dashy"></i><span class="text text-muted"><!-- &nbsp; --> VROOM GARAGES </span></a>
+							                </div>
+							                <div class="col-md-6 dashy-right">
+								                <p class="text-dark"><strong class="text-dark">Invoice Date: &nbsp;</strong>{{ date | date: 'MM/dd/yyyy'}}<br><small class="text-light"></small></p>
+							                </div>
+						                </div>
+						                <hr>
+						                <div class="row">
+							                <div class="col-md-4">
+								                <h4>Client:</h4>
+								                <div class="well">
+									                <address>
+										                <strong class="text-dark">{{orders.vehicle_owner_full_name}}</strong>
+										                <br>
+										                <strong title="Phone">Contact No:</strong> {{orders.vehicle_owner_phone_num}}
+									                </address>
+									                <address>
+										                <strong class="text-dark">E-mail:</strong>
+										                <a href="mailto:#">{{orders.vehicle_owner_email}}</a>
+									                </address>
+								                </div>
+							                </div>
+							                <div class="col-md-4">
+							                </div>
+							                <div class="col-md-4 pull-right payment-detals-wrap">
+								                <h4>Vehicle Details:</h4>
+								                <ul class="list-unstyled invoice-details padding-bottom-30 padding-top-10 text-dark">
+									                <li>
+										                <strong>Orders Id:&nbsp;</strong>{{orders._id}}
+									                </li>
+									                <li>
+										                <strong>Vehicle No:&nbsp;</strong> {{orders.vehicle_num}}
+									                </li>
+									                <li>
+										                <strong>Vehicle Brand:&nbsp;</strong>{{orders.vehicle_brand}}&nbsp;{{orders.vehicle_model}}
+									                </li>
+									                <li>
+										                <strong>Orders Date:&nbsp;</strong>{{orders.create_date | date: 'MM/dd/yyyy'}}
+									                </li>
+									                <li>
+									                    <strong>Payment Status:&nbsp;</strong>{{orders.payment_status || "Pendding"}}
+	                                                </li>
+								                </ul>
+							                </div>
+						                </div>
+						                <hr>
+						                <div class="row ">
+							                <div class="col-sm-12 invoice-table">
+								                <table class="table table-bordered table-striped">
+									                <thead>
+										                <tr>
+											                <th> # </th>
+											                <th> Task Description</th>
+											                <th class="hidden-480">Inventory Detail</th>
+											                <th class="hidden-480">Cost Price</th>
+											                <th> Total </th>
+										                </tr>
+									                </thead>
+									                <tbody>
+										                <tr ng-repeat="item in orders.tasks">
+											                <td> {{$index + 1}} </td>
+											                <td> {{item.description}} </td>
+											                <td class="hidden-480"> {{item.inventory_desc}} </td>
+											                <td class="hidden-480"> {{item.sell_price}}</td>
+											                <td class="hidden-480"> {{item.sell_price}} </td>
+										                </tr>
+									                </tbody>
+								                </table>
+							                </div>
+						                </div>
+						                <div class="row">
+							                <div class="col-sm-12 invoice-block">
+								                <ul class="list-unstyled amounts text-small" align="right">
+									                <li>
+										                <strong>Sub-Total:&nbsp;</strong>{{orders.sub_Amount | number:2}}
+									                </li>
+									                <li ng-repeat="tax in tax_data">
+										                <strong>{{tax.tax_name}}({{tax.tax_percent}}%):&nbsp;</strong> {{tax.tax_amount | number:2}}
+									                </li>
+									                <li class="text-extra-large text-dark margin-top-15">
+										                <strong>Total:&nbsp;</strong> {{orders.total_Amount | number:2}}
+									                </li>
+								                </ul>
+							                </div>
+						                </div>
+						                <div class="row">
+							                <div class="col-sm-12 invoice-block">
+								                <br>
+								                <a ng-show="btnPayment" class="btn btn-rounded btn-primary btn-o hidden-print pull-right" ng-click="updatePayment()">Pay<i class="fa fa-check"></i></a> &nbsp;&nbsp;&nbsp;
+								                <a  ng-show="btnPrint" ng-print print-element-id="printThisElement" class="btn btn-bordered btn-primary hidden-print pull-right">Print <i class="fa fa-print"></i>
+								                </a>
+							                </div>
+						                </div>
+					                </div>
+				                </div>
+			                </div>
+		                </div>
+	                </div>
+	                <div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+		                <div class="modal-footer">
+		                    <button class="btn btn-default btn-rounded" ng-click="goToThird()">Back</button>
+		                    <button ng-show="nextPayment" class="btn btn-primary btn-rounded" ng-click="goToFifth()">Next</button>
+		                </div>
+		            </div>
+	        </tab>
+	        <tab ng-show="deliveryTab" ng-attr-active="delivery">
+		       	<tab-heading>Delivery</tab-heading>
+		       	<div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+		       		<div class="panel">
+		       			<div class="panel-body">
+	                        <div>
+				                <div class="form-group">
+				                    <label for="ProductCategory">Delivery Type:</label>
+				                    <div class="radio">
+	                                    <label style="padding-right: 5px;">
+				                            <input type="radio" ng-model="orders.delivery_type" value="Pickup">Pickup
+			                            </label>
+					                    <label style="padding-right: 5px;">
+						                    <input type="radio" ng-model="orders.delivery_type" value="Home drop off ">Home drop off
+						                </label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                             	<div class="form-group">
+	                             	    <label for="ProductCategory">Delivery Date:</label> 
+							            <input type="date" class="form-control" ng-model="orders.delivery_date"/>
+							        </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <label for="ProductCategory">Delivery Time:</label> 
+	                                <input type="time" class="form-control" id="exampleInput" id="delivery_time" ng-model="orders.delivery_time" placeholder="HH:mm:ss" min="08:00:00" max="20:00:00" required />
+	                            </div>
+	                            <div class="form-group">
+	                                <label for="description">Delivery Address:</label>
+	                                <textarea class="form-control" rows="5" id="description" ng-model='orders.delivery_Address' id="description"></textarea>
+	                            </div> 
+	                            <div class="form-group">
+				                	<span>Delivery Status:</span>
+				                    <label for="ProductCategory">{{orders.delivery_status}}</label>
+	                            </div>
+	                            <div class="form-group">
+									<a ng-show="btnDelivery" class="btn btn-rounded btn-primary btn-o hidden-print pull-right" ng-click="updateDelivery()">Submit<i class="fa fa-check"></i></a>
+	                            </div>  
+	                        </div>
+		       			</div>
+		       		</div>
+		       	</div>
+		       	<div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+	                <div class="modal-footer">
+	                    <button class="btn btn-default btn-rounded" ng-click="goToFourth()">Back</button>
+	                </div>
+	            </div>	
+		    </tab>
+	    </tabset>
+	</div>
+</div>
+<!-- <div><pre id="default-spacing">{{ orders | json }}</pre></div>
+ -->
+
+

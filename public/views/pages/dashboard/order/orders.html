@@ -1,0 +1,111 @@
+<!-- <pageheader1 pagename="Users" subtitle="" btnname="Create" btn2name="Discard" gridview="opengrid()" listview="openlist()"></pageheader1> -->
+<style type="text/css">
+	.Nav_btn{
+    padding: 6px 15px;
+    color: #fff; 
+    margin-top: 16px; 
+    border: none; 
+    margin-right: 15px;
+	}
+</style> 
+
+<div class="page-title clearfix">
+    <div class="navbar-header">       
+        <a class="navbar-brand" ui-sref="orders"><i class="fa fa-list"></i>&nbsp;Orders</a> <div class="solution">>>>&nbsp;info</div>
+        <!-- <ul>
+            <li  class="dropdown hidd" style="border:none;">
+               <span class="searchview_more fa fa-search" title="advance search...."></span>
+            </li>
+        </ul> -->
+    </div>
+    <div class="right-admin right-admin_toggle mobile_visible">
+        <ul>
+            <li class="dropdown hidd" dropdown on-toggle="toggled(open)">
+                <a href class="dropdown-toggle admin-toggle" dropdown-toggle>
+                    <i class="fa fa-search"></i>
+                   
+                </a>
+                <ul class="dropdown-menu admin" role="menu">
+                    <input type="text" id="underline" placeholder="Search....." style="padding: 6px 15px;width: 100%;">&nbsp;&nbsp;
+                    <!-- <li role="presentation" class="dropdown-header"></li> -->
+                </ul>             
+            </li>
+            <li ng-show="createPermission"><a ui-sref="createOrders" ng-click="showSubNav(0)"><i class="fa fa-plus-circle"></i></a></li>
+            <li><a href ng-click="showgrid()"><i class="fa fa-th-large"></i></a></li>
+            <li><a href ng-click="showlist()"><i class="fa fa-th-list"></i></a></li>
+            
+        </ul>
+    </div>
+    <div class=" mobile_visible search_box">
+        <ul class="search_box_ul">
+            <li class="dropdown hidd" dropdown on-toggle="toggled(open)">
+                <a href class="dropdown-toggle admin-toggle" dropdown-toggle>
+                    <i style="float: left;" class="fa fa-search"></i><input type="text" id="underline" placeholder="Search.....">&nbsp;&nbsp;
+                </a>          
+            </li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+                <a href class="dropdown-toggle admin-toggle" dropdown-toggle>
+                    <i class="fa fa-filter"></i>&nbsp;<span class="add">Filters &nbsp;<i class="fa fa-angle-down"></i></span>
+                </a>
+                <ul class="dropdown-menu admin" role="menu">
+                   <!--  <li role="presentation" class="dropdown-header">Order status</li> -->
+                    <li><a><i class="fa fa-filter"></i> Open</a></li>
+                    <li><a><i class="fa fa-filter"></i> Complete</a></li>
+                    <li><a><i class="fa fa-filter"></i> Payment</a></li>
+                    <li><a><i class="fa fa-filter"></i> Pending</a></li>
+                    <li><a><i class="fa fa-filter"></i> Delivered</a></li>
+                    <li><a><i class="fa fa-filter"></i> All</a></li>
+                </ul>             
+            </li>
+        </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right top-nav">
+            <li ng-show="createPermission" style="border:none;">
+              <button class="btn btn-rounded btn-primary Nav_btn"><a ui-sref="createOrders" ng-click="showSubNav(0)" style="color: #fff;">Create</a></button>
+            </li>
+            <li style="border:none;">
+               <span class="searchview_more fa fa-search" title="advance search...."></span>
+               <input type="text" id="underline" placeholder="Search....." style="padding: 6px 15px; margin-top: 14px;">&nbsp;&nbsp;
+            </li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+                <a href class="dropdown-toggle admin-toggle" dropdown-toggle>
+                <i class="fa fa-filter"></i>&nbsp;<span class="add">Filters &nbsp;<i class="fa fa-angle-down"></i></span>
+                </a>
+                <ul class="dropdown-menu admin" role="menu">
+                    <li role="presentation" class="dropdown-header">Order status</li>
+                    <li><a><i class="fa fa-filter"></i> Open</a></li>
+                    <li><a><i class="fa fa-filter"></i> Complete</a></li>
+                    <li><a><i class="fa fa-filter"></i> Payment</a></li>
+                    <li><a><i class="fa fa-filter"></i> Pending</a></li>
+                    <li><a><i class="fa fa-filter"></i> Delivered</a></li>
+                    <li><a><i class="fa fa-filter"></i> All</a></li>
+                </ul>             
+            </li>
+            <!-- <li class="dropdown" dropdown on-toggle="toggled(open)">
+                <a href class="dropdown-toggle admin-toggle" dropdown-toggle>
+                <i class="fa fa-bars"></i>&nbsp;<span class="add">Group-By &nbsp;<i class="fa fa-angle-down"></i></span>
+                </a>
+                <ul class="dropdown-menu admin" role="menu">
+                    <li role="presentation" class="dropdown-header">Group name</li>
+                    <li><a><i class="fa fa-bars"></i> Group 1</a></li>
+                    <li><a><i class="fa fa-bars"></i> Group 2</a></li>
+                    <li><a><i class="fa fa-bars"></i> Group 3</a></li>
+                    <li><a><i class="fa fa-bars"></i> Group 4</a></li>
+                </ul>             
+            </li> -->
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="showgrid()">
+                <span class="add"><i class="fa fa-th-large"></i></span>
+                </a>                  
+            </li>
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="showlist()" dropdown-toggle>
+                <span class="add"><i class="fa fa-th-list"></i>
+                </a>                  
+            </li>
+        </ul>
+    </div>
+</div>
+<div ng-include="templateUrl"></div>
+

@@ -1,0 +1,157 @@
+<style type="text/css">
+  .Nav_btn{
+    padding: 6px 15px;
+    color: #fff; 
+    margin-top: 16px; 
+    border: none; 
+    margin-right: 15px;
+  }
+
+  .lay {
+    position: relative;
+  }
+
+  .image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+  }
+
+  .lay:hover .image {
+    opacity: 0.3;
+  }
+
+  .lay:hover .middle {
+    opacity: 1;
+  }
+
+  .text {
+    background-color: transparent;
+    color: black;
+    font-size: 16px;
+  }
+  .button {
+      -moz-appearance: button;
+      /* Firefox */
+      -webkit-appearance: button;
+      /* Safari and Chrome */
+      padding: 10px;
+      margin: 10px;
+      width: 70px;
+  }
+  .drop-box {
+      background: #F8F8F8;
+      border: 5px solid #DDD;
+      width: 170px;
+      height:170px;
+      text-align: center;
+      padding-top: 25px;
+  }
+  .dragover {
+      border: 5px dashed blue;
+  }
+</style>
+<div>
+  <div class="page-title clearfix">
+    <div class="navbar-header">       
+      <a class="navbar-brand" ui-sref="appointments"><i class="fa fa-calendar"></i>&nbsp;Appointment</a><div class="solution">>>>&nbsp;Book Appointment</div>
+    </div>  
+  </div>
+  <form name="aptForm" id="aptForm" novalidate> 
+    <div class="modal-body">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= successMsg>
+            <div class="alert alert-success">{{successMsg}}</div>
+          </div>
+          <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMsg>
+            <div class="alert alert-danger">{{errorMsg}}</div>
+          </div>
+          <div class="row">  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>City*</label>
+                <select class="form-control" ng-model="appointments.city_id" ng-change="getWorkshop(appointments.city_id, aptForm)" name="city_id" required>
+                  <option value="">Select City</option>
+                  <option ng-repeat="cityList in city" value="{{cityList._id}}">{{cityList.cityName}}</option>
+                </select>
+                <p class="help-block" ng-show="(!aptForm.city_id.$pristine && aptForm.city_id.$error.required) || (aptForm.$submitted && aptForm.city_id.$error.required)" style="color: #c70505;">This field is required</p>
+              </div>
+              <div class="form-group">
+                <label>Work Shop</label>
+                <select class="form-control" ng-model="appointments.partner_id" name="partner_id" required>
+                  <option value="">Select Workshop</option>
+                  <option ng-repeat="workshopList in Workshop" value="{{workshopList._id}}">{{workshopList.name}}</option>
+                </select>
+                <p class="help-block" ng-show="(!aptForm.partner_id.$pristine && aptForm.partner_id.$error.required) || (aptForm.$submitted && aptForm.partner_id.$error.required)" style="color: #c70505;">This field is required</p>
+              </div> 
+              <div class="form-group">
+                <label>Vehicle Number*</label>
+                <input type="text" class="form-control" ng-model ="appointments.vehicle_num" name="
+                vehicle_num" ng-change="getVehicleData(appointments.vehicle_num = appointments.vehicle_num.toUpperCase())" placeholder="Enter Vehicle Number" required>
+                <p class="help-block" ng-show="(!aptForm.vehicle_num.$pristine && aptForm.vehicle_num.$error.required) || (aptForm.$submitted && aptForm.vehicle_num.$error.required)" style="color: #c70505;">This field is required</p>
+              </div>
+              <div class="form-group">
+                <label>Vehicle Brand*</label>
+                <input type="text" class="form-control" ng-model ="appointments.vehicle_brand" name="vehicle_brand" placeholder="Enter Vehicle Brand" required>
+                <p class="help-block" ng-show="(!aptForm.vehicle_brand.$pristine && aptForm.vehicle_brand.$error.required) || (aptForm.$submitted && aptForm.vehicle_brand.$error.required)" style="color: #c70505;">This field is required</p>
+              </div>
+              <div class="form-group">
+                <label>Vehicle Model*</label>
+                <input type="text" class="form-control" ng-model ="appointments.vehicle_model" name="vehicle_model" placeholder="Enter Vehicle Model*" required>
+                <p class="help-block" ng-show="(!aptForm.vehicle_model.$pristine && aptForm.vehicle_model.$error.required) || (aptForm.$submitted && aptForm.vehicle_model.$error.required)" style="color: #c70505;">This field is required</p>
+              </div>
+              <div class="form-group">
+                <label>Appointment Date</label> 
+                <input type="date" class="form-control" ng-model="appointments.appointment_date" name="appointment_date" required />
+                <p class="help-block" ng-show="(!aptForm.appointment_date.$pristine && aptForm.appointment_date.$error.required) || (aptForm.$submitted && aptForm.appointment_date.$error.required)" style="color: #c70505;">This field is required</p>
+              </div>
+              <div class="form-group">
+                <label>Appointment Time</label>
+                <input type="time" class="form-control" name="appointment_time" id="appointment_time" ng-model="appointments.appointment_time" placeholder="HH:mm:ss" required />
+                <p class="help-block" ng-show="(!aptForm.appointment_time.$pristine && aptForm.appointment_time.$error.required) || (aptForm.$submitted && aptForm.appointment_time.$error.required)" style="color: #c70505;">This field is required</p>
+              </div>
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" rows="5" id="description" ng-model='appointments.description' id="description"></textarea>
+              </div>         
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Upload Image</label>
+              </div>
+              <div class="form-group" style="display: inline-block; width: 100%;">
+                  <div ng-repeat="V in appointments.vehicle_img" class="col-md-4">
+                      <img class="img-responsive img-thumbnail pull-centar" style="width: 170px; height: 170px;" src="images/{{V.image}}" alt="">
+                  </div>
+                  <div class="col-md-4 lay">
+                      <img class="img-responsive img-thumbnail pull-centar image" src="images/bike.png" ngf-drop ngf-select ng-model="files"  ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" style="width: 170px; height: 170px;">  
+                      <div class="middle">
+                          <div class="text"><i class="fa fa-plus fa-2x"></i></div>   
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>     
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-default btn-rounded" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-primary btn-rounded" ng-click="BookAppointment(aptForm.$valid, aptForm)">Book</button>
+    </div>
+  </form>       
+</div> 

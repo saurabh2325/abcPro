@@ -1,0 +1,160 @@
+
+<div>   
+    <div class="page-title clearfix">
+        <div class="navbar-header">       
+          <a class="navbar-brand" ui-sref="patner"><i class="fa fa-user"></i>&nbsp;Patner</a><div class="solution">>>>&nbsp;Create</div>
+        </div>  
+    </div>
+    <div class="modal-body">
+        <form name="regForm" id="regForm" novalidate>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= successMsg>
+                        <div class="alert alert-success">{{successMsg}}</div>
+                    </div>
+                    <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMsg>
+                        <div class="alert alert-danger">{{errorMsg}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-success':(regForm.name.$valid && !regForm.name.$pristine), 'has-error':(!regForm.name.$valid && !regForm.name.$pristine) || (!regForm.name.$valid && regForm.$submitted) }">
+                                <label for="Contact">Full Name:</label>
+                                <input type="text" class="form-control" ng-model='users.name' placeholder="Full Name" aria-describedby="basic-addon2"  name="name" ng-pattern="/^(([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})+)+$/" ng-minlength="3" ng-maxlength="40" required>
+                                <p class="help-block" ng-show="(!regForm.name.$pristine && regForm.name.$error.required)||(regForm.$submitted && regForm.name.errors.required)" style="color: red;">This is required</p>
+                                <ul ng-show="(!regForm.name.$pristine && regForm.name.$error.pattern) || (!regForm.name.$pristine && regForm.name.$error.minlength) || (!regForm.name.$pristine && regForm.name.$error.maxlength)" class="help-block" style="color: red;">
+                                    <li>Must have a space in between first and last firstName</li>
+                                    <li>Must not contain any special characters</li>
+                                    <li>Must not contain any numbers</li>
+                                    <li>Must be at least 3 characters but no more than 20</li>
+                                </ul>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-success':(regForm.username.$valid && !regForm.username.$pristine), 'has-error':(!regForm.user_name.$valid && !regForm.user_name.$pristine) || (!regForm.user_name.$valid && regForm.$submitted) }">
+                                <label for="Contact">User Name:</label>
+                                <input type="text" class="here form-control" ng-model='users.user_name' placeholder=" User name" aria-describedby="basic-addon2"  name="user_name" ng-pattern="/^(?!.*?[\W])(?=.*?[a-zA-Z]|=.*?[A-Z]).{3,16}$/" ng-minlength="3" ng-maxlength="25" required >
+                                <p class="help-block" ng-show="(!regForm.user_name.$pristine && regForm.user_name.$error.required)||(regForm.$submitted && regForm.user_name.errors.required)" style="color: red;">This is required</p>
+                                <!-- <p ng-show="usernameMsg">{{usernameMsg}}</p> -->
+                                <ul ng-show="(!regForm.user_name.$pristine && regForm.user_name.$error.pattern) || (!regForm.user_name.$pristine && regForm.user_name.$error.minlength) || (!regForm.user_name.$pristine && regForm.user_name.$error.maxlength)" class="help-block" style="color: red;">
+                                    <li>Must not contain any special characters or spaces</li>
+                                    <li>Must be at least 3 characters but no more than 25</li>
+                                </ul>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-success':(regForm.email.$valid && !regForm.email.$pristine), 'has-error':(!regForm.email.$valid && !regForm.email.$pristine) || (!regForm.email.$valid && regForm.$submitted) }">
+                                <label for="Contact">Email Address:</label>
+                                <input type="email" class="here form-control" ng-model='users.email' placeholder="email" aria-describedby="basic-addon1" name="email" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" ng-minlength="3" ng-maxlength="40" required>
+                                <p class="help-block" ng-show="(!regForm.email.$pristine && regForm.email.$error.required)||(regForm.$submitted && regForm.email.errors.required)" style="color: red;">This is required</p>
+                                <!-- <p ng-show="emailMsg">{{emailMsg}}</p> -->
+                                <ul ng-show="(!regForm.email.$pristine && regForm.email.$error.pattern) || (!regForm.email.$pristine && regForm.email.$error.minlength) || (!regForm.email.$pristine && regForm.email.$error.maxlength)" class="help-block" style="color: red;">
+                                    <li>Must contain "@"</li>
+                                    <li>Must not contain any special characters</li>
+                                    <li>Must be at least 3 characters but no more than 40</li>
+                                </ul>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-success':(regForm.firstPassword.$valid && !regForm.firstPassword.$pristine), 'has-error':(!regForm.firstPassword.$valid && !regForm.firstPassword.$pristine) || (!regForm.firstPassword.$valid && regForm.$submitted) }">
+                                <label for="Contact">Password:</label>
+                                <input type="password" class="here form-control" ng-model='firstPassword' placeholder="Password" aria-describedby="basic-addon2" name="firstPassword" ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{8,35}$/" ng-minlength="3" ng-maxlength="35" required>
+                                <p class="help-block" ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.required)||(regForm.$submitted && regForm.firstPassword.errors.required)" style="color: red">This is required</p>
+                                <ul ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.pattern) || (!regForm.firstPassword.$pristine && regForm.firstPassword.$error.minlength) || (!regForm.firstPassword.$pristine && regForm.firstPassword.$error.maxlength)" class="help-block" style="color: red">
+                                    <li>Must contain at least one upper case letter</li>
+                                    <li>Must contain at least one lower case letter</li>
+                                    <li>Must contain at least one number</li>
+                                    <li>Must contain at least one special character</li>
+                                    <li>Must contain at least 8 characters but no more than</li>
+                                </ul>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-success':confirmed && !regForm.confirmPassword.$error.required, 'has-error':( !confirmed && !regForm.confirmPassword.$error.required) || (regForm.confirmPassword.$error.required && !regForm.confirmPassword.$pristine) || (regForm.$submitted && regForm.confirmPassword.$error.required) }">
+                                <label for="Contact">Confirm Password:</label>
+                                <input type="password" name="confirmPassword" class="here form-control" match1 = '{{[firstPassword]}}' ng-change="users.password = confirm" ng-model='confirm' placeholder="Confirm Password" aria-describedby="basic-addon2" required="" >
+                                <p class="help-block" ng-show="(!regForm.confirmPassword.$pristine && regForm.confirmPassword.$error.required) || (regForm.$submitted && regForm.confirmPassword.$error.required)" style="color: red">This field is required</p>
+                                <p class="help-block" ng-show="!confirmed && !regForm.confirmPassword.$pristine && regForm.firstPassword.$valid" style="color: red">Passwords do not match</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="Contact">Mobile Number:</label>
+                                <input type="text" class="form-control" id="cell_phone_1" ng-model='users.cell_phone_1' placeholder="Cell Phone No 1" name="cell_phone_1" required number-only>
+                                <p class="help-block" ng-show="(!regForm.cell_phone_1.$pristine && regForm.cell_phone_1.$error.required) || (regForm.$submitted && regForm.cell_phone_1.$error.required)" style="color: red">This field is required</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="Contact">Other Number:</label>
+                                <input type="text" class="form-control" id="cell_phone_2" ng-model='users.cell_phone_2' placeholder="Cell Phone No 2" number-only>
+                            </div>
+                            <div class="form-group">
+                                <label for="Contact">Work Phone Number:</label>
+                                <input type="text" class="form-control" ng-model='users.work_phone_1' id="work_phone_1" placeholder="Work Phone No. 1" name="work_phone_1" required number-only>
+                                <p class="help-block" ng-show="(!regForm.work_phone_1.$pristine && regForm.work_phone_1.$error.required) || (regForm.$submitted && regForm.work_phone_1.$error.required)" style="color: red">This field is required</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="Contact">Other Number:</label>
+                                <input type="text" class="form-control" ng-model='users.work_phone_2' id="work_phone_2" placeholder="Work Phone No. 2" number-only>
+                            </div> 
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" rows="5" id="description" ng-model='users.description' id="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Contact">Partner Image:</label>
+                                <div class="col-md-12">
+                                    <img class="img-responsive img-thumbnail pull-centar" style="width: 170px; height: 170px;" src="images/{{users.user_img}}" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="file" class="form-control" file-Model="myFile" id="profile_image"> 
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-default btn-rounded" ng-click="uploadImage()">Upload</button> 
+                                </div>  
+                            </div>
+                            <div class="form-group">
+                                <label for="AddressName">Address Line 1:</label>
+                                <input type="text" class="form-control" ng-model='users.addr_line_1' id="addr_line_1" placeholder="Address line 1" name="addr_line_1" required>
+                                <p class="help-block" ng-show="(!regForm.addr_line_1.$pristine && regForm.addr_line_1.$error.required) || (regForm.$submitted && regForm.addr_line_1.$error.required)" style="color: red">This field is required</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="AddressName">Address Line 2:</label>
+                                <input type="text" class="form-control" ng-model='users.addr_line_2' id="addr_line_2" placeholder="Address line 2">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddressName">Address Line 3:</label>
+                                <input type="text" class="form-control" ng-model='users.addr_line_3' id="addr_line_3" placeholder="Address line 3">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddressName">Address Line 4:</label>
+                                <input type="text" class="form-control" ng-model='users.addr_line_4' id="addr_line_4" placeholder="Address line 4">
+                            </div>
+                            <div class="form-group" >
+                                <label for="AddressName">Country:</label>
+                                <select class="form-control" ng-model="users.country" ng-change="openCountry()" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option ng-repeat="countryDetail in countries" value="{{countryDetail._id}}">{{countryDetail.country}}</option>
+                                    <option value="cok">Add New Country...</option>
+                                </select>
+                                <p class="help-block" ng-show="(!regForm.country.$pristine && regForm.country.$error.required) || (regForm.$submitted && regForm.country.$error.required)" style="color: red">This field is required</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="AddressName">State:</label>
+                                <select class="form-control" ng-model="users.state" ng-change="openState()" name="state" required>
+                                    <option value="">Select State</option>
+                                    <option ng-repeat="stateDetail in state | filter: users.country" value="{{stateDetail._id}}">{{stateDetail.stateName}}</option>
+                                    <option value="sk">Add New State...</option>
+                                </select>
+                                <p class="help-block" ng-show="(!regForm.state.$pristine && regForm.state.$error.required) || (regForm.$submitted && regForm.state.$error.required)" style="color: red">This field is required</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="AddressName">City:</label>
+                                <select class="form-control" ng-model="users.city" ng-change="openCity()" name="city" required>
+                                    <option value="">Select City</option>
+                                    <option ng-repeat="CityDetail in city | filter: users.state" value="{{CityDetail._id}}">{{CityDetail.cityName}}</option>
+                                    <option value="ck">Add New City...</option>
+                                </select>
+                                <p class="help-block" ng-show="(!regForm.city.$pristine && regForm.city.$error.required) || (regForm.$submitted && regForm.city.$error.required)" style="color: red">This field is required</p>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </form>    
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default btn-rounded" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary btn-rounded submit" ng-click ="createPatner(regForm.$valid, regForm)">Save</button>
+    </div>       
+</div>

@@ -1,0 +1,199 @@
+<style type="text/css">
+    .Nav_btn{
+       padding: 6px 15px;
+       color: #fff; 
+       margin-top: 16px; 
+       border: none; 
+       margin-right: 15px;
+    }
+
+    .lay {
+      position: relative;
+    }
+
+    .image {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
+
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%)
+    }
+
+    .lay:hover .image {
+      opacity: 0.3;
+    }
+
+    .lay:hover .middle {
+      opacity: 1;
+    }
+
+    .text {
+      background-color: transparent;
+      color: black;
+      font-size: 16px;
+    }
+    .button {
+        -moz-appearance: button;
+        /* Firefox */
+        -webkit-appearance: button;
+        /* Safari and Chrome */
+        padding: 10px;
+        margin: 10px;
+        width: 70px;
+    }
+    .drop-box {
+        background: #F8F8F8;
+        border: 5px solid #DDD;
+        width: 170px;
+        height:170px;
+        text-align: center;
+        padding-top: 25px;
+    }
+    .dragover {
+        border: 5px dashed blue;
+    }
+</style>
+
+<div class="page-title clearfix">
+  <div class="navbar-header">       
+        <a class="navbar-brand" ui-sref="vehicles"><i class="fa fa-car"></i>&nbsp;Vehicle</a> <div class="solution">>>>&nbsp;</i>edit</div>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right top-nav">
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="infoVehicle(vehicles._id)">
+                <i class="fa fa-info"></i>&nbsp;<span class="add">info</span>
+                </a>                  
+            </li>
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="editVehicle(vehicles._id)">
+                <i class="fa fa-edit"></i>&nbsp;<span class="add">Edit</span>
+                </a>                  
+            </li>
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="historyVehicle(vehicles._id)">
+                <i class="fa fa-history"></i>&nbsp;<span class="add">Service History</span>
+                </a>                  
+            </li>
+        </ul>
+    </div>
+     <div class="right-admin right-admin_toggle mobile_visible">
+        <ul>
+            <li style="float: left;"><a href class="dropdown-toggle admin-toggle" ng-click="infoVehicle(vehicles._id)"><i class="fa fa-info"></i></a></li>
+            <li><a href class="dropdown-toggle admin-toggle" ng-click="editVehicle(vehicles._id)"><i class="fa fa-edit"></i></a></li>
+            <li><a href class="dropdown-toggle admin-toggle" ng-click="historyVehicle(vehicles._id)"><i class="fa fa-history"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div>
+    <form name="vehiForm" id="vehiForm" novalidate>   
+        <div class="modal-body">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">  
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Vehicle Number*</label>
+                                <input type="text" class="form-control" ng-model='vehicles.vehicle_num' name="vehicle_num" placeholder="Vehicle Number" ng-change="vehicles.vehicle_num = vehicles.vehicle_num.toUpperCase()" required>
+                                <p class="help-block" ng-show="(!vehiForm.vehicle_num.$pristine && vehiForm.vehicle_num.$error.required) || (vehiForm.$submitted && vehiForm.vehicle_num.$error.required)" style="color: #c70505;">This field is required</p> 
+                            </div>
+                            <div class="form-group">
+                                <label>Manufacturer*</label>
+                                <input type="text" class="form-control" name="manufacturer" ng-model='vehicles.manufacturer' placeholder="Manufacturer(e.g. Honda)" required>
+                                <p class="help-block" ng-show="(!vehiForm.manufacturer.$pristine && vehiForm.manufacturer.$error.required) || (vehiForm.$submitted && vehiForm.manufacturer.$error.required)" style="color: #c70505;">This field is required</p> 
+                            </div>
+                            <div class="form-group">
+                                <label>Model*</label>
+                                <input type="text" class="form-control" ng-model='vehicles.model' name="model" placeholder="Model" required>
+                                <p class="help-block" ng-show="(!vehiForm.model.$pristine && vehiForm.model.$error.required) || (vehiForm.$submitted && vehiForm.model.$error.required)" style="color: #c70505;">This field is required</p> 
+                            </div>
+                             <div class="form-group">
+                                <label>Chassis Number</label>
+                                <input type="text" class="form-control" ng-model='vehicles.chassis_num' id="chassis_num" placeholder="Chassis Number"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Engine Number</label>
+                                <input type="text" class="form-control" ng-model='vehicles.engine_num' id="engine_num" placeholder="Engine Number"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Variant</label>
+                                <input type="text" class="form-control" ng-model='vehicles.variant' id="variant" placeholder="Variant"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Make Year</label>
+                                <input type="text" class="form-control" ng-model='vehicles.make_year' id="make_year" placeholder="Make Year(e.g 2016)"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Mileage</label>
+                                <input type="text" class="form-control" ng-model='vehicles.mileage' id="mileage" placeholder="Mileage"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Insurance Vendor</label>
+                                <input type="text" class="form-control" ng-model='vehicles.insurance_vendor' id="insurance_vendor" placeholder="Insurance Vendor"> 
+                            </div> 
+                            <div class="form-group">
+                                <label>Insureance Policy Number</label>
+                                <input type="text" class="form-control" ng-model='vehicles.insureance_policy_number' id="insureance_policy_number" placeholder="Insureance Policy Number "> 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Upload Image</label>
+                            </div>
+                            <div class="form-group" style="display: inline-block; width: 100%;">
+                                <div ng-repeat=" V in vehicles.vehicle_img" class="col-md-4">
+                                    <img class="img-responsive img-thumbnail pull-centar" style="width: 170px; height: 170px;" src="images/{{V.image}}" alt="">
+                                </div>
+                                <div class="col-md-4 lay">
+                                    <img class="img-responsive img-thumbnail pull-centar image" src="images/bike.png" ngf-drop ngf-select ng-model="files"  ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" style="width: 170px; height: 170px;">  
+                                    <div class="middle">
+                                        <div class="text"><i class="fa fa-plus fa-2x"></i></div>   
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Owner</label>
+                                <input type="text" class="form-control" ng-model='vehicles.last_owner' id="last_owner" placeholder="Last Owner"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Last Workshop</label>
+                                <input type="text" class="form-control" ng-model='vehicles.last_workshop' id="last_workshop" placeholder="Last Workshop"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Current City</label>
+                                <input type="text" class="form-control" ng-model='vehicles.city' id="city" placeholder="Current City"> 
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" class="form-control" id="state" ng-model='vehicles.state' placeholder="State">
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control" ng-model='vehicles.country' id="country" placeholder="Country"> 
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" ng-model='vehicles.description' id="description" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default btn-rounded" ng-click="infoVehicle(vehicles._id)">Cancel</button>
+            <button class="btn btn-primary btn-rounded" ng-click="updateVehicle(vehiForm.$valid, vehiForm)">Update</button>
+        </div>
+    </form>        
+</div>

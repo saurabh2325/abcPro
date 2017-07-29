@@ -1,0 +1,139 @@
+<style type="text/css">
+	.Nav_btn{
+    padding: 6px 15px;
+    color: #fff; 
+    margin-top: 16px; 
+    border: none; 
+    margin-left: 15px;
+	}
+	.prophoto .table tbody tr td:nth-child(1){
+		min-width: 150px;
+	}
+	@media screen and (max-width: 767px){
+		.navbar-header{
+			width: 50%;
+			float: left;
+		}
+		.edit_mobiole{
+			width: 50%;
+			float: right;
+		}
+		.edit_mobiole ul{
+			margin: 0px;
+		}
+		.edit_mobiole ul button{
+			margin: 0px auto;
+			display: block;
+			margin-top: 10px;
+		}
+	}
+
+</style> 
+<div class="page-title clearfix">
+    <div class="navbar-header">       
+        <a class="navbar-brand" ui-sref="appointments"><i class="fa fa-user"></i>&nbsp;Profile</a> <div class="solution">>>>&nbsp;</i>info</div>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right top-nav">
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="editUser(profileData._id)">
+                <i class="fa fa-edit"></i>&nbsp;<span class="add">Edit</span>
+                </a>                  
+            </li>
+        </ul>
+    </div>
+     <div class="right-admin right-admin_toggle mobile_visible">
+        <ul>
+            <li><a href class="dropdown-toggle admin-toggle" ng-click="editUser(profileData._id)"><i class="fa fa-edit"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class="conter-wrapper">
+	<div>
+		<div class="profile-body row" id="profile-items">
+			<div class="col-md-12">
+				<div class="profile-comment prophoto">	
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="lorem">
+						        <Strong>About us</Strong>
+							</div>
+								<div class="col-md-6">
+									<table class="table">
+										<tbody> 
+											<tr>
+												<td><b><i class="fa fa-user"></i> User Name:</b></td>
+												<td>{{profileData.user_name}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-user"></i> Name:</b></td>
+												<td>{{profileData.name}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-envelope"></i>  Email:</b></td>
+												<td>{{profileData.email}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-pencil"></i> Description:</b></td>
+												<td>{{profileData.description}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-phone"></i>  Cell Phone 1: </b></td>
+												<td> {{profileData.cell_phone_1}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-phone"></i>  Cell Phone 2: </b></td>
+												<td>{{profileData.cell_phone_2}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-phone"></i> Work Phone 1:</b></td>
+												<td>{{profileData.work_phone_1}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-phone"></i> Work Phone 2:</b></td>
+												<td> {{profileData.work_phone_2}}	</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-md-6">
+									<table class="table">
+										<tbody>
+											<tr>
+												<td><b> Image: </b></td>
+												<td><img style="width: 170px; height: 170px;" class="img-responsive img-thumbnail pull-centar" src="images/{{profileData.user_img}}" alt=""></td>
+											</tr>
+											
+											<tr>
+												<td><b><i class="fa fa-map-marker"></i> Lives in:</b></td>
+												<td>{{profileData.addr_line_1}},  
+													{{profileData.addr_line_2}},  {{profileData.addr_line_3}}, 
+													{{profileData.addr_line_4}}
+												</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-map-marker"></i> City:</b></td>
+												<td>{{city}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-map-marker"></i> State:</b></td>
+												<td>{{state}}</td>
+											</tr>
+											<tr>
+												<td><b><i class="fa fa-map-marker"></i> Country:</b></td>
+												<td>{{country}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>
+
+
+
+

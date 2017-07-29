@@ -1,0 +1,37 @@
+<div class="conter-wrapper">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<table class="table table-striped" style="margin-top: 20px;">
+						<thead style="background-color: black;">
+							<tr>
+								<th>#</th>
+								<th>Vehicle Number</th>
+								<th>Make and Model</th>
+								<th>Last Owner</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="vehicle in vehicles | filter:searchText | startFrom:currentPage*pageSize | limitTo:pageSize ">
+								<td>{{(currentPage*pageSize)+ $index + 1}}</td>
+								<td ng-click="viewVehicle(vehicle._id)" style="cursor: pointer;">{{vehicle.vehicle_num}}</td>
+								<td>{{vehicle.manufacturer}}-{{vehicle.model}}</td>
+								<td>{{vehicle.last_owner}}</td>
+								<td><button class="btn btn-primary btn-rounded" ng-click="removeUser(vehicle._id)">Remove</button></td>
+							</tr>
+						</tbody>
+					</table>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>

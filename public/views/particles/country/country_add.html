@@ -1,0 +1,17 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Country</h3>
+    </div>
+    <div class=" col-md-12 modal-body">
+        <form>
+            <div class="form-group">
+                <label for="Country">Country Name :</label>
+                <input type="text" class="form-control" id="Country" ng-model="data.country" placeholder="Enter Country Name">
+            </div>
+        </form>   
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default btn-rounded" ng-click="showCountry()">Cancel</button>
+        <button class="btn btn-primary btn-rounded" ng-click="saveCountry()">Save</button>
+    </div>
+</div>

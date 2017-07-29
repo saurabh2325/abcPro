@@ -1,0 +1,45 @@
+<div class="conter-wrapper">    
+    <div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<table class="table table-striped" style="margin-top: 20px;">
+						<thead style="background-color: black;">
+							<tr>
+							    <th>#</th>
+								<th>Vehicle Number</th>
+								<th>Make and Model</th>
+								<th>Order Status</th>
+								<th>Complete Task</th>
+								<th>ETA</th>
+								<th>Revenue</th>
+								<th>Profit</th>
+								<th ng-show="deletePermission">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="order in orders | orderBy: '-create_date' | startFrom:currentPage*pageSize | limitTo:pageSize ">
+							    <td>{{(currentPage*pageSize)+ $index + 1}}</td>
+								<td ng-click="infoOrder(order._id)" style="cursor: pointer;">{{order.vehicle_num}}</td>
+								<td>{{order.vehicle_brand}}-{{order.vehicle_model}}</td>
+								<td>{{order.order_status}}</td>
+								<td>{{order.task_complete}}</td>
+								<td>{{order.total_cost_Amount}}</td>
+								<td>{{order.sub_Amount}}</td>
+								<td>{{order.sub_Amount - order.total_cost_Amount}} </td>
+								<td ng-show="deletePermission"><button class="btn btn-primary btn-rounded" ng-click="removeUser(D._id)">Remove</button></td>
+							</tr>
+						</tbody>
+					</table>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>

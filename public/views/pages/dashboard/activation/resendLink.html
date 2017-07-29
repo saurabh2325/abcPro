@@ -1,0 +1,24 @@
+<div class="heading">Resend Activation Link?</div>
+<div class="input">
+	<form class="form-horizontal" role="form" ng-submit="checkcredentials()">
+		<div class="login-input-group">
+			<span class="login-input-group-addon"><i class="fa fa-at fa-fw"></i></span>
+			<input type="text" class="form-control" ng-model='resendData.user_name' placeholder="name"   name="username" value="">	
+		</div>
+		<div class="login-input-group">
+			<span class="login-input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+			<input type="password" class="form-control" ng-model='resendData.password' placeholder="password"  name="password">
+		</div>
+		<button type="submit" class="btn btn-default btn-lg submit">Send link</button>
+	</form>
+	<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= successMsg>
+	    <div class="alert alert-success">{{successMsg}}</div>
+	</div>
+	
+	<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMsg>
+		<div class="alert alert-danger">{{errorMsg}}</div>
+	</div>
+</div>
+<div class="rightFooter">
+	<a ui-sref="home">Back to home</a>
+</div>

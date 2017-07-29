@@ -1,0 +1,38 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Country </h3>
+    </div>
+    <div class="col-md-12 modal-body">
+        <table class="table table-condensed table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="countryName in countries">
+                    <td>{{$index + 1}}</td>
+                    <td>{{countryName._id}}</td>
+                    <td>{{countryName.country}}</td>
+                    <td>
+                        <!--<button class="btn btn-info btn-rounded" ng-click="ok()">Update</button>-->
+                        <button class="btn btn-default btn-rounded" ng-click="removeCountry(countryName._id)">Delete</button>
+                    </td>
+                </tr>   
+            </tbody>
+            <thead>
+                <tr>
+                    <button class="btn_filter btn btn-md dropdown-toggle" ng-click="addCountry()">+Add Country</button>
+                </tr>
+            </thead>
+        </table>
+                    
+    </div>
+    <div class="modal-footer">
+         <button class="btn btn-default btn-rounded" ng-click="cancel()">X</button>
+        <!--<button class="btn btn-primary btn-rounded" ng-click="ok()">Update</button> -->
+    </div> 
+</div>

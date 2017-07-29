@@ -1,0 +1,42 @@
+<div class="conter-wrapper">
+    <div class="row">
+		<div class="col-md-12">
+		    <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= message>
+                <div class="alert alert-info">{{message}}</div>
+            </div>
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<table class="table table-striped" style="margin-top: 20px;">
+						<thead style="background-color: black;">
+							<tr>
+							    <th>#</th>
+								<th>Vehicle Number</th>
+								<th>Appointment Date</th>
+								<th>Appointment Time</th>
+								<th>Make and Model</th>
+								<th ng-show="deletePermission">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="appointment in appointments | orderBy: '-appointment_date' | startFrom:currentPage*pageSize | limitTo:pageSize ">
+							    <td>{{(currentPage*pageSize)+ $index + 1}}</td>
+								<td ng-click="infoAppointment(appointment._id)" style="cursor: pointer;">{{appointment.vehicle_num}}</td>
+								<td>{{appointment.appointment_date | date: "EEEE, MMMM d, y"}}</td>
+								<td>{{appointment.appointment_time | date: "h:mm a"}}</td>
+								<td>{{appointment.vehicle_brand}}-{{appointment.vehicle_model}}</td>
+								<td ng-show="deletePermission"><button class="btn btn-primary btn-rounded" ng-click="deleteAppointment(appointment._id)">Remove</button></td>
+							</tr>
+						</tbody>
+					</table>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>	

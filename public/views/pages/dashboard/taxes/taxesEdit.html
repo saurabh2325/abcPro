@@ -1,0 +1,52 @@
+
+
+<div>   
+    <div class="page-title clearfix">
+        <div class="navbar-header">       
+          <a class="navbar-brand" ui-sref="tax"><i class="fa fa-car"></i>&nbsp;Tax</a><div class="solution">>>>&nbsp;{{taxData.tax_name}}</div>
+        </div>  
+    </div>
+    <div class="modal-body">
+        <form name="taxForm" id="taxForm" novalidate>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= successMsg>
+                        <div class="alert alert-success">{{successMsg}}</div>
+                    </div>
+                    <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMsg>
+                        <div class="alert alert-danger">{{errorMsg}}</div>
+                    </div>
+                    <div class="row">  
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="example">Tax Name</label>
+                                <input type="text" class="form-control" ng-model='taxData.tax_name' id="tax_name" placeholder="Tax Name" name="tax_name" required>
+                                <p class="help-block" ng-show="(!taxForm.tax_name.$pristine && taxForm.tax_name.$error.required) || (taxForm.$submitted && taxForm.tax_name.$error.required)" style="color: red">This field is required</p> 
+                            </div>
+                            <div class="form-group">
+                                <label for="example">Tax %</label>
+                                <input type="text" class="form-control" ng-model='taxData.tax_percent' id="tax_percent" placeholder="Tax Name" name="tax_percent" required>
+                                <p class="help-block" ng-show="(!taxForm.tax_percent.$pristine && taxForm.tax_percent.$error.required) || (taxForm.$submitted && taxForm.tax_percent.$error.required)" style="color: red">This field is required</p> 
+                            </div>
+                            <div class="form-group">
+                                <label for="example">Tax Status</label>
+                                <div class="radio">
+                                    <label style="padding-right: 5px;">
+                                         <input type="radio" ng-model="taxData.tax_status" value="Active">Active
+                                    </label>
+                                    <label style="padding-right: 5px;">
+                                        <input type="radio" ng-model="taxData.tax_status" value="Deactive">Deactive 
+                                    </label>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </form> 
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default btn-rounded" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary btn-rounded" ng-click="updateTax(taxData._id, taxForm.$valid)">Update</button>
+    </div>       
+</div>

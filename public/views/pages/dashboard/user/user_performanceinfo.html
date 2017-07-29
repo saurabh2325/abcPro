@@ -1,0 +1,89 @@
+
+<style type="text/css">
+    .Nav_btn{
+    padding: 6px 15px;
+    color: #fff; 
+    margin-top: 16px; 
+    border: none; 
+    margin-right: 15px;
+    }
+</style> 
+
+<div class="page-title clearfix">
+  <div class="navbar-header">       
+        <a class="navbar-brand" ui-sref="vehicles"><i class="fa fa-user"></i>&nbsp;Vehicle</a> <div class="solution">>>>&nbsp;</i>info</div>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right top-nav">
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="InfoUser(users._id)" >
+                <i class="fa fa-info"></i>&nbsp;<span class="add">Info</span>
+                </a>                  
+            </li>
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="editUser(users._id)">
+                <i class="fa fa-edit"></i>&nbsp;<span class="add">Edit</span>
+                </a>                  
+            </li>
+            <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="performanceUser(users._id)" >
+                <i class="fa fa-signal"></i><span class="add">&nbsp;Performance</span>
+                </a>                  
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="conter-wrapper">
+    <div class="container-fluid home-page">
+        <div style="margin-top: 20px;">
+            <div class="row">
+                <div class="col-md-3 home-panel" style="margin-top: 60px;">
+                    <user-performance bgclass="info" icon="eye" value="71,842" text="Total Leads"></user-performance>
+                    <user-performance bgclass="warning" icon="bar-chart" value="6,123" text="Total Sales"></user-performance>
+                </div>
+                <div class="col-md-3 home-panel" style="margin-top: 60px;"> 
+                    <user-performance bgclass="success" icon="thumbs-up" value="1,482" text="Qualified"></user-performance>   
+                    <user-performance bgclass="danger" icon="calculator" value="12,34.00" text="Net Revenue"></user-performance>
+                </div>
+                <div class="col-md-6">
+                <div class="panel panel-success line-chart">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Progress Chart        
+                            <div class="panel-control pull-right">
+                              <a class="panelButton">Week</a>
+                              <a class="panelButton">Month</a>
+                              <a class="panelButton">Year</a>
+                            </div>
+                        </h3>
+                    </div>
+                    <div class="panel-body" relink-event="resize">
+                        <home-chart></home-chart>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="alert alert-white">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Attention: </strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius lacus vitae purus tincidunt blandit. Phasellus malesuada accumsan felis venenatis mollis. Suspendisse at pharetra enim, in congue mauris. Nam sodales turpis lorem, ac semper augue congue sed. Nam id ullamcorper elit, at sodales justo. Aliquam suscipit mi nec ex tempus laoreet. Donec tincidunt risus eu rutrum sagittis. <a ui-sref="c3chart">View Details</a>
+            </div>
+        </div>
+        <div>
+            <!-- <div class="row">
+                <div class="col-md-6 home-panel">
+                    <user-performance bgclass="info" icon="eye" value="71,842" text="Total Leads"></user-performance>
+                    <br>
+                    <user-performance bgclass="success" icon="thumbs-up" value="1,482" text="Qualified"></user-performance>
+                    <user-performance bgclass="warning" icon="bar-chart" value="6,123" text="Total Sales"></user-performance>
+                    <br>
+                    <user-performance bgclass="danger" icon="calculator" value="12,34.00" text="Net Revenue"></user-performance>
+                </div>
+                <div class="col-md-6">
+                    <todolist></todolist>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

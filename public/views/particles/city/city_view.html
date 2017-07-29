@@ -1,0 +1,53 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">City </h3>
+    </div>
+    <div class="col-md-12 modal-body">
+        <div class=" col-md-6 form-group">
+            <label for="Country">Country :</label>
+            <select class="form-control" ng-model="data.country">
+                <option value="">Select Country</option>
+                <option ng-repeat="countryDetail in countries" value="{{countryDetail._id}}">{{countryDetail.country}}</option>
+            </select>   
+        </div>
+        <div class=" col-md-6 form-group">
+            <label for="State">State :</label>
+            <select class="form-control" ng-model= "data.state">
+                <option value="">---Select---</option>
+                <option ng-repeat="stateDetail in state | filter: data.country" value="{{stateDetail._id}}">{{stateDetail.stateName}}</option>
+            </select> 
+        </div>
+
+        <table class="table table-condensed table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Id</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat = "cityDetail in city | filter: data.state">
+                    <td>{{$index + 1}}</td>
+                    <td>{{cityDetail._id}} </td>
+                    <td>{{cityDetail.cityName}}</td>
+                    <td>
+                        <button class="btn btn-info btn-rounded" ng-click="ok()">Update</button>
+                        <button class="btn btn-warning btn-rounded" ng-click="removeCity(cityDetail._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <button class="btn_filter btn btn-md dropdown-toggle" ng-click="addCity()">+Add City</button>
+                </tr>
+            </thead>
+        </table>
+                    
+    </div>
+    <div class="modal-footer">
+         <button class="btn btn-default btn-rounded" ng-click="cancel()">X</button>
+        <!--<button class="btn btn-primary btn-rounded" ng-click="ok()">Update</button> -->
+    </div> 
+</div>

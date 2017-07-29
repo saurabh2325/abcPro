@@ -1,0 +1,32 @@
+<div class="conter-wrapper">
+	<div class="row">
+		<div ng-repeat="D in users | orderBy: '-create_date' | startFrom:currentPage*pageSize | limitTo:pageSize " class="col-md-4 view_summry">
+            <div class="panel panel-danger">
+                <div class="panel-body img_setting">
+                <div>
+                    <img style="width: 64px; height: 74px;" class="img-responsive img-thumbnail pull-left" src="images/{{D.user_img}}" alt=""> 
+                </div>
+                <div class="u_detailpanel">
+                    <strong ng-click="viewUser(D._id)">{{D.name}}</strong>
+                    <div class="u_detail">
+                        <span>{{D.email}}</span>
+                    </div>
+                    <div class="u_detail">
+                        <span>{{D.cell_phone_1}}</span>
+                    </div>
+                    <div class="u_detail">
+                        <span class="badge"><i class="fa fa-fw fa-star"></i>4</span>
+                    </div>
+                </div>
+                </div> 
+            </div>
+        </div>   
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>

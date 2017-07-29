@@ -1,0 +1,39 @@
+<div class="conter-wrapper">	
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<table class="table table-striped" style="margin-top: 20px;">
+						<thead style="background-color: black;">
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Percent(%)</th>
+								<th>Status</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="tax in taxData | startFrom:currentPage*pageSize | limitTo:pageSize ">
+								<td>{{(currentPage*pageSize)+ $index + 1}}</td>
+								<td>{{tax.tax_name}}</td>
+								<td>{{tax.tax_percent}}</td>
+								<td>{{tax.tax_status}}</td>
+								<td><button class="btn btn-primary btn-rounded" ng-click="editTax(tax._id)">Edit</button>&nbsp;
+								<button class="btn btn-danger btn-rounded" ng-click="removeTax(tax._id)">Remove</button>
+								</td>
+	                        </tr>
+						</tbody>
+					</table>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>

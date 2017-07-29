@@ -1,0 +1,281 @@
+
+<style type="text/css"> 
+	.Nav_btn{
+		padding: 6px 15px;
+		color: #fff; 
+		margin-top: 16px; 
+		border: none; 
+		margin-right: 15px;
+	}
+	.panel .panel-body{
+		background: #eee;
+	}
+    .lay {
+    	position: relative;
+    }
+  	.image {
+	    opacity: 1;
+	    display: block;
+	    width: 100%;
+	    height: auto;
+	    transition: .5s ease;
+	    backface-visibility: hidden;
+  	}
+  	.middle {
+	    transition: .5s ease;
+	    opacity: 0;
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%)
+  	}
+  	.lay:hover .image {
+    	opacity: 0.3;
+  	}
+  	.lay:hover .middle {
+    	opacity: 1;
+  	}
+  	.text {
+	    background-color: transparent;
+	    color: black;
+	    font-size: 16px;
+  	}
+  	.button {
+	    -moz-appearance: button;
+	    /* Firefox */
+	    -webkit-appearance: button;
+	    /* Safari and Chrome */
+	    padding: 10px;
+	    margin: 10px;
+	    width: 70px;
+  	}
+  	.drop-box {
+        background: #F8F8F8;
+        border: 5px solid #DDD;
+        width: 170px;
+        height:170px;
+        text-align: center;
+        padding-top: 25px;
+  	}
+    .dragover {
+        border: 5px dashed blue;
+    }
+</style> 
+<div class="page-title clearfix">
+    <div class="navbar-header">       
+        <a class="navbar-brand" ui-sref="orders"><i class="fa fa-list"></i>&nbsp;Orders</a> <div class="solution">>>>&nbsp;</i>create</div>
+    </div>
+</div>
+<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= successMsg>
+    <div class="alert alert-success" style="margin-top: 10px;">{{successMsg}}</div>
+</div>
+<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMsg>
+    <div class="alert alert-danger" style="margin-top: 10px;">{{errorMsg}}</div>
+</div>
+<div style="padding: 15px;background: #eee;display: inline-block;width: 100%;">
+	<div class="page-title" style="color: #555;display: inline-block;padding: 0px;
+    border-top: 0px;width: 100%; "><!-- color:#555; -->
+	    <form name="ordForm" id="ordForm" novalidate>
+		    <tabset class="primary-tabs" style="background: #eee;">
+		        <tab ng-attr-active="general">
+		            <tab-heading>General</tab-heading>
+		            <div class="col-md-6 t-p">
+		                <div class="panel">
+						    <div class="panel-body">
+							    <div class="form-group">
+									<label for="vehicle_Detail">VEHICLE DETAILS</label>
+								</div>
+								<div class="form-group">
+								    <label>Vehicle Number*</label>
+									<input type="text" ng-change="getVehicleDetail(orders.vehicle_num = orders.vehicle_num.toUpperCase())" class="form-control" id="vehicle_num" ng-model="orders.vehicle_num" placeholder="Enter Vehicle Number*" name="vehicle_num"  required>
+									<p class="help-block" ng-show="(!ordForm.vehicle_num.$pristine && ordForm.vehicle_num.$error.required) || (ordForm.$submitted && ordForm.vehicle_num.$error.required)" style="color: #c70505;">This field is required</p>
+								</div>
+								<div class="form-group">
+								    <label>Vehicle Brand*</label>
+									<input type="text" class="form-control" id="vehicle_brand" ng-model="orders.vehicle_brand" placeholder="Enter Vehicle Brand*" name="vehicle_brand"  required>
+									<p class="help-block" ng-show="(!ordForm.vehicle_brand.$pristine && ordForm.vehicle_brand.$error.required) || (ordForm.$submitted && ordForm.vehicle_brand.$error.required)" style="color: #c70505;">This field is required</p>
+								</div>
+								<div class="form-group">
+								    <label>Vehicle Model*</label>
+									<input type="text" class="form-control" id="vehicle_model" ng-model="orders.vehicle_model" placeholder="Enter Vehicle Model*" name="vehicle_model"  required>
+									<p class="help-block" ng-show="(!ordForm.vehicle_model.$pristine && ordForm.vehicle_model.$error.required) || (ordForm.$submitted && ordForm.vehicle_model.$error.required)" style="color: #c70505;">This field is required</p>
+								</div>
+								<div class="form-group">
+		                            <label>Upload Image</label>
+		                        </div>
+		                        <div class="form-group" style="display: inline-block; width: 100%;">
+	                                <div ng-repeat=" V in vehicles.vehicle_img" class="col-md-4">
+	                                    <img class="img-responsive img-thumbnail pull-centar" style="width: 170px; height: 170px;" src="images/{{V.image}}" alt="">
+	                                </div>
+	                                <div class="col-md-4 lay">
+	                                    <img class="img-responsive img-thumbnail pull-centar image" src="images/bike.png" ngf-drop ngf-select ng-model="files"  ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" style="width: 170px; height: 170px;">  
+	                                    <div class="middle">
+	                                        <div class="text"><i class="fa fa-plus fa-2x"></i></div>   
+	                                    </div>
+	                                </div>
+                            	</div>
+						    </div>
+					    </div>
+		            </div>
+		            <div class=" col-md-6 t-p">
+		                <div class="panel">
+						    <div class="panel-body">
+							    <div class="form-group">
+									<label for="exampleInputPassword1">CLIENT DETAILS</label>
+								</div>
+								<div class="form-group">
+								    <label>Full Name*</label>
+									<input type="text" class="form-control" id="vehicle_owner_full_name" ng-model="orders.vehicle_owner_full_name" placeholder="Enter Full Name*" name="vehicle_owner_full_name"  required>
+									<p class="help-block" ng-show="(!ordForm.vehicle_owner_full_name.$pristine && ordForm.vehicle_owner_full_name.$error.required) || (ordForm.$submitted && ordForm.vehicle_owner_full_name.$error.required)" style="color: #c70505;">This field is required</p>
+								</div>
+								<div class="form-group">
+								    <label>Phone Number*</label>
+									<input type="text" class="form-control" id="owner_phone" ng-model="orders.vehicle_owner_phone_num" placeholder="Enter Phone Number*" name="owner_phone"  required>
+									<p class="help-block" ng-show="(!ordForm.owner_phone.$pristine && ordForm.owner_phone.$error.required) || (ordForm.$submitted && ordForm.owner_phone.$error.required)" style="color: #c70505;">This field is required</p>
+								</div>
+								<div class="form-group">
+								    <label>Email Address*</label>
+									<input type="text" class="form-control" id="owner_email" ng-model="orders.vehicle_owner_email" placeholder="Enter Email Address*" name="owner_email"  required>
+									<p class="help-block" ng-show="(!ordForm.vehicle_owner_email.$pristine && ordForm.vehicle_owner_email.$error.required) || (ordForm.$submitted && ordForm.vehicle_owner_email.$error.required)" style="color: #c70505;">This field is required</p>
+								</div>
+						    </div>
+					    </div>
+		            </div>
+		            <div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+		                <div class="modal-footer">
+		                    <button class="btn btn-primary btn-rounded" ng-click=goToSecond()>Next</button>
+		                </div>
+		            </div>
+		        </tab>
+		        <tab ng-attr-active="checklist">
+		        	<tab-heading>Checklist</tab-heading>
+		        	    <div class="col-md-12 col-sm-12 col-xs-12">
+		        		<div class="row">
+		        			<div class="col-md-3 t-p" ng-repeat="checklist in checklists"> 
+		                        <div class="panel">
+						            <div class="panel-body">
+						                <div ng-show="false" class="form-group" style="border-bottom: 1px solid #e5e5e5;">
+									        <label>{{$index+1}}</label> 
+								        </div>
+							            <div class="form-group" style="border-bottom: 1px solid #e5e5e5;">
+									        <a ng-bind='checklist.checklist_item'></a>
+								        </div>
+								        <div class="form-group">
+									        <div class="radio">
+										        <label style="padding-right: 5px;">
+											        <input type="radio" ng-change="show(checklist.checklist_id)" ng-model="checklist.checklist_item_condition" value="Critical">Critical
+										        </label>
+									            <label style="padding-right: 5px;">
+										            <input type="radio" ng-change="show(checklist.checklist_id)"  ng-model="checklist.checklist_item_condition" value="Warn">Warn		
+									            </label>
+									
+									            <label style="padding-right: 5px;">
+										            <input type="radio" ng-change="show(checklist.checklist_id)" ng-model="checklist.checklist_item_condition" value="Good">Good
+										         </label>
+									        </div>
+								        </div>
+								        <div class="form-group">
+									        <label for="description">Notes:</label>
+		                                    <textarea class="form-control" rows="4" ng-model="checklist.checklist_item_notes"></textarea>
+		                                   <!-- <p>{{date}}</p> 
+		                                   <input type="text" ng-model="checklists.last_updt_date" ng-show="checklist.checklist_item_condition"/> -->
+								        </div>
+						            </div>
+					            </div>
+		                    </div>   
+		        		</div>
+		        		<div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+		                    <div class="modal-footer">
+		                        <button class="btn btn-default btn-rounded" ng-click="goToFirst()">Back</button>
+		                        <button class="btn btn-primary btn-rounded" ng-click="goToThird()">Next</button>
+		                    </div>
+		                </div> 
+		        	</div>
+		        </tab>
+		        <tab ng-attr-active="task">
+		        	<tab-heading>Task</tab-heading>
+		        	<div class="col-md-4 t-p" ng-repeat="item in orders.tasks">
+		                <div class="panel">
+						    <div class="panel-body">
+							    <!-- ng-model="item.order_tasks_id" -->
+							    <div class="form-group">
+					                <input ng-show="false" type="text" class="form-control" ng-model="item.order_tasks_id" placeholder="Task id">
+								</div>
+								<div class="form-group">
+								    <label>Description:</label>
+									<input type="text" class="form-control" ng-model="item.description" placeholder="Enter Task Description">
+								</div>
+								<div class="form-group">
+								    <label>inventory Detail:</label>
+									<input type="text" class="form-control" ng-model="item.inventory_desc" placeholder="Enter inventory Detail">
+								</div>
+								<div class="form-group">
+								    <label>Cost Price:</label>
+									<input type="text" class="form-control" ng-model="item.cost_price" placeholder="Enter Cost Price">
+								</div>
+								<div class="form-group">
+								    <label>Selling Price:</label>
+									<input type="text" class="form-control" ng-model="item.sell_price" placeholder="Enter Selling Price">
+								</div>
+								<div class="form-group">
+								    <label>Status:</label>
+									<div class="radio">
+										<label style="padding-right: 5px;">
+											 <input type="radio" ng-model="item.task_status" value="Open" checked=true>Open
+										</label>
+									    <label style="padding-right: 5px;">
+										    <input type="radio" ng-model="item.task_status" value="Complete">Complete		
+									    </label>
+								    </div>
+								</div>
+								<div class="form-group"> 
+								    <label>Start Date::</label>
+								    <input type="date" class="form-control" ng-model="item.start_date"/>
+								</div>
+								<div class="form-group"> 
+								    <label>End Date:</label>
+								    <input type="date" class="form-control" ng-model="item.end_date"/>
+								</div>
+							    <!-- <div class="form-group">
+		                            <div class="col-md-12">
+		                                <img class="img-responsive img-thumbnail pull-centar" style="width: 170px; height: 170px;" src="images/{{item.task_img}}" alt="">
+		                            </div>
+		                            <div class="col-md-6">
+		                                <input type="file" class="form-control" file-Model="orders.myFile" id="vehicle_img"> 
+		                            </div>
+		                            <div class="col-md-6">
+		                                <button class="btn btn-default btn-rounded" ng-click="uploadTaskImage()">Upload</button> 
+		                            </div>  
+		                        </div> -->
+		                        <div class=" col-md-12 col-sm-12 col-xs-12 t-p" style="text-align: center; border-top: 1px solid #06c5ac;">
+		                            <div >
+			                            <div class="row">
+			                               <button class="btn btn-danger btn_full_width" ng-click="remove(item)"><span class="fa fa-trash-o"></span></button>
+			                            </div>
+		                            </div>
+		                        </div>
+						    </div>
+					    </div>
+		            </div>
+		            <div class="col-md-12 t-p">
+						 <div class="form-group">
+							 <button class="btn btn-primary btn_full_width" ng-click="add()"><span class="fa fa-plus"> </span> Add Task</button>
+						 </div>
+					</div>
+					<div class=" col-md-12 col-sm-12 col-xs-12 t-p">
+		                <div class="modal-footer">
+		                    <button class="btn btn-default btn-rounded" ng-click="goToSecond()">Back</button>
+		                    <button class="btn btn-primary btn-rounded" ng-click="addOrder(ordForm.$valid, ordForm)">Save</button>
+		                </div>
+		            </div>    
+		        </tab>
+		    </tabset>
+		</form>
+	</div>
+</div>	
+
+<!-- <div><pre id="default-spacing">{{ orders | json }}</pre></div>  -->
+
+
+

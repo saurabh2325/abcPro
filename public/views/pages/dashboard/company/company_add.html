@@ -1,0 +1,110 @@
+
+<style type="text/css">
+  .btn-text{
+    color: #fff;
+  }
+</style>
+<div>   
+    <div class="page-title clearfix">
+    <div class="navbar-header">       
+      <a class="sidenav-toggle" href="javascript:;" ng-click="showMenu();" ><span class="brandbar"><i class="fa fa-bars hidd"></i></a></span>
+      <a class="navbar-brand" ui-sref="company"><i class="fa fa-user"></i>&nbsp;Company</a> <div class="solution">>>>&nbsp;</i>Create</div>
+    </div>  
+  </div>
+    <div class=" col-md-12 modal-body">
+      <form name="form" class="css-form" novalidate>
+        <div class=" col-sm-8 form-group">
+            <div class="form-group">
+              <input type="text" class="form-control underline" ng-model="data.companyName" placeholder="Company Name" name="comName" companyname required="" camelcase>
+              <div ng-show="form.$submitted || form.comName.$touched">
+              <alert ng-show="form.comName.$error.required" type="warning">Tell us your company name</alert>
+              </div>
+              <alert ng-show="form.comName.$pending.companyname" type="info">Company name is available</alert>
+              <alert ng-show="form.comName.$error.companyname" type="danger">Company name is already taken!</alert> 
+            </div>
+            <div form-group">
+             <label for="AddressName">Address :</label>
+              <input type="text" class="form-control underline" id="Street" ng-model="data.street" placeholder="Street">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control underline" id="LandMark" ng-model="data.landMark" placeholder="Landmark">
+            </div>
+            <div class="form-group" >
+                    <select class="form-control underline" ng-model="data.country" ng-change="openCountry()">
+                        <option value="">Select Country</option>
+                        <option ng-repeat="countryDetail in countries" value="{{countryDetail._id}}">{{countryDetail.country}}</option>
+                        <option value="cok">Add New Country...</option>
+                    </select>
+                </div>
+            <div class="col-sm-4 form-group">
+              <select class="form-control underline" ng-model="data.state" ng-change="openState()">
+                <option value="">State</option>
+                <option ng-repeat="stateDetail in state | filter: data.country" value="{{stateDetail._id}}">{{stateDetail.stateName}}</option>
+                <option value="sk">Add New State...</option>
+              </select>
+            </div> 
+            <div class=" col-sm-4 form-group">
+              <select class="form-control underline" ng-model="data.city" ng-change="openCity()">
+                <option value="">City</option>
+                <option ng-repeat="CityDetail in city | filter: data.state" value="{{CityDetail._id}}">{{CityDetail.cityName}}</option>
+                <option value="ck">Add New City...</option>
+              </select>
+            </div>
+            <div class=" col-sm-4 form-group">
+                <input type="text" class="form-control underline" id="ZipCode" ng-model="data.postalCode" placeholder="ZipCode or Postal Code"> 
+            </div>
+            
+          </div>
+          <div class=" col-sm-4 form-group">
+            <img class="img-responsive img-thumbnail pull-centar" style="width: 170px; height: 170px;" src="images/dog.jpg" alt="">
+            <input type="file" class="form-control" ng-model="data.companyLogo" id="BCompanyLogo">            
+          </div>
+        <div class=" col-sm-6 form-group">
+          <div class="form-group">
+          <label for="Contact">Contact Information :</label>
+            <input type="text" class="form-control underline" id="ContactNo" ng-model="data.contactNo" placeholder="Contact No." number-Only>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control underline" id="MobileNo" ng-model="data.mobileNo" placeholder="Mobile No."  number-Only>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control underline" id="txtFaxNo" ng-model="data.faxNo" placeholder="Fax No." number-Only>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control underline" ng-model="data.email" placeholder="Email Address" name="comEmail" required="">
+            <div ng-show="form.$submitted || form.comEmail.$touched">
+              <alert ng-show="form.comEmail.$error.required" type="warning">Tell us your email</alert>
+              <alert ng-show="form.comEmail.$error.email" type="warning">This is not a valid email</alert>
+            </div>
+          </div>
+        </div> 
+        <div class=" col-sm-6 form-group">
+          <div class="form-group">
+          <label for="Contact">Other Information :</label>
+            <input type="text" class="form-control underline" id="PanNo" ng-model="data.panNo" placeholder="PAN No." capitalize>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control underline" id="TinNo" ng-model="data.tinNo" placeholder="TIN No." capitalize>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control underline" id="CstNO" ng-model="data.cstNo" placeholder="CST No." capitalize>
+          </div>
+          <div class="form-group" >
+            <select class="form-control underline" ng-model="data.currency" ng-change="openCountry()">
+              <option value="">Select Currency</option>
+              <option value="Rupees">Rupees</option>
+              <option value="Euro">Euro</option>
+              <option value="Dollar">Dollar</option>
+              <option value="cok">Add New Currency...</option>
+            </select>
+          </div>
+        </div> 
+      </form>    
+    </div>
+  
+    <div class="modal-footer">
+      <button class="btn btn-default btn-rounded" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-primary btn-rounded" ng-click="companySave()">Save</button>
+    </div>
+        <!-- </script> -->
+  </div>

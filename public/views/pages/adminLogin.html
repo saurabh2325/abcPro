@@ -1,0 +1,29 @@
+<div class="heading">Login to your Account</div>
+
+<div class="input">
+	<form class="form-horizontal" role="form" ng-submit="submit(loginData)">
+		<!-- <input type="hidden" name="_token" value="6z7mfMW1GwKzG2sgsG9icqN1bfcJTooGwIOySP22"> -->
+		<div class="login-input-group">
+			<span class="login-input-group-addon"><i class="fa fa-at fa-fw"></i></span>
+			<input type="text" class="form-control" ng-model='loginData.user_name' placeholder="name" name="username" value="">	
+		</div>
+		<div class="login-input-group">
+			<span class="login-input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+			<input type="password" class="form-control" ng-model='loginData.password' placeholder="password"  name="password">
+		</div>
+		<button type="submit" class="btn btn-default btn-lg submit">Login</button>
+	</form>				
+	<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= successMsg >
+	    <div class="alert">
+          <div class="loader"></div>
+          <p>{{successMsg}}<p>
+        </div>
+	</div>
+	
+	<div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMsg>
+		<div class="alert alert-danger">{{errorMsg}} &nbsp;<a ng-show= "expired" ui-sref="resend"><button type="button" class="btn btn-default" style="border-radius: 30px; border-left: solid 2px #06c5ac;">Resend link</button></a></div>
+	</div>
+</div>
+<div class="rightFooter">
+	<a ui-sref="forgot-password" class="m-l">Forgot Password?</a>
+</div>

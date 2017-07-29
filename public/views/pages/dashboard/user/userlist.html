@@ -1,0 +1,41 @@
+<div class="conter-wrapper">  
+    <div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<table class="table table-striped" style="margin-top: 20px;">
+						<thead style="background-color: black;">
+							<tr>
+							    <th>#</th>
+								<th>Name</th>
+								<th>Address</th>
+								<th>Contact No</th>
+								<th>Mobile No</th>
+								<th>Email Address</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="D in users | orderBy: '-create_date' | startFrom:currentPage*pageSize | limitTo:pageSize ">
+							    <td>{{(currentPage*pageSize)+ $index + 1}}</td>
+								<td ng-click="viewUser(D._id)" style="cursor: pointer;">{{D.name}}</td>
+								<td>{{D.addr_line_1}},{{D.addr_line_2}},{{D.city}},<br>{{D.state}},{{D.country}},{{D.postalCode}}</td>
+								<td>{{D.cell_phone_1}}</td>
+								<td>{{D.work_phone_1}}</td>
+								<td>{{D.email}}</td>
+								<td><button class="btn btn-primary btn-rounded" ng-click="removeUser(D._id)">Remove</button></td>
+							</tr>
+						</tbody>
+					</table>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>

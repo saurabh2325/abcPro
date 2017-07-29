@@ -1,0 +1,50 @@
+
+<div class="conter-wrapper">
+    <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= message>
+        <div class="alert alert-info" style="margin-top: 10px;">{{message}}</div>
+    </div>
+    <div class="row show-hide-message" style="margin: 10px 96px;" ng-show= errorMessage>
+        <div class="alert alert-info" style="margin-top: 10px;">{{errorMessage}}</div>
+    </div>
+	<div class="row">
+		<div ng-repeat="appointment in appointments | orderBy: '-appointment_date' | startFrom:currentPage*pageSize | limitTo:pageSize " class="col-md-4 view_summry">
+            <div class="panel">
+                <div class="panel-body img_setting">
+                    <div class="img_div">
+                        <img class="img-responsive img-thumbnail pull-left" src="images/{{appointment.vehicle_img[0].image}}" alt=""> 
+                        <!-- style="width: 74px; height: 74px;" -->
+                    </div>
+                    <div class="u_detailpanel">
+                        <h4 ng-click="infoAppointment(appointment._id)" style="cursor: pointer;">{{appointment.vehicle_num}}</h4>
+                        <div class="u_detail">
+                            <span>{{appointment.vehicle_owner_full_name}}</span>
+                        </div>
+                        <div class="u_detail">
+                            <span>{{appointment.vehicle_brand}}-{{appointment.vehicle_model}}</span>
+                        </div>
+                        <div class="u_detail">
+                            <span>{{appointment.appointment_date | date: 'EEEE, MMMM d, y'}}</span>
+                        </div>
+                        <div class="u_detail">
+                            <span>{{appointment.appointment_time | date: 'h:mm a'}}</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail_btn">
+                        <ul>
+                            <li ng-if="!appointment.status"><button class="btn btn-rounded btn-primary Nav_btn"><a href ng-click="editAppointment(appointment._id)" style="color: #fff;">Edit</a></button></li>
+                            <li><button class="btn btn-rounded btn-warning Nav_btn"><a href ng-click="infoAppointment(appointment._id)" style="color: #fff;">View</a></button></li>
+                            <li  ng-show="createOrder" ng-if="!appointment.status"><button class="btn btn-rounded btn-success Nav_btn"><a href ng-click="CreateOrder(appointment._id)" style="color: #fff;">Order</a></button></li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </div>   
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>  

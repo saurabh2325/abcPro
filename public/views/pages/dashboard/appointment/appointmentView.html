@@ -1,0 +1,113 @@
+<style type="text/css">
+    .Nav_btn{
+    padding: 6px 15px;
+    color: #fff; 
+    margin-top: 16px; 
+    border: none; 
+    margin-right: 15px;
+    }
+</style> 
+
+<div class="page-title clearfix">
+  <div class="navbar-header">       
+        <a class="navbar-brand" ui-sref="appointments"><i class="fa fa-calendar"></i>&nbsp;Appointment</a> <div class="solution">>>>&nbsp;</i>info</div>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right top-nav">
+            <!-- <li>
+                <a href class="dropdown-toggle admin-toggle" ng-click="infoAppointment(appointments._id)">
+                <i class="fa fa-info"></i>&nbsp;<span class="add">info</span>
+                </a>                  
+            </li> -->
+            <li ng-show="editPermission" ng-if="!appointments.status">
+                <a href class="dropdown-toggle admin-toggle" ng-click="CreateOrder(appointments._id)">
+                <i class="fa fa-edit"></i>&nbsp;<span class="add">CreateOrder</span>
+                </a>                  
+            </li>
+            <li ng-if="!appointments.status">
+                <a href class="dropdown-toggle admin-toggle" ng-click="editAppointment(appointments._id)">
+                <i class="fa fa-edit"></i>&nbsp;<span class="add">Edit</span>
+                </a>                  
+            </li>
+        </ul>
+    </div>
+     <div class="right-admin right-admin_toggle mobile_visible">
+        <ul>
+            <li style="float: left;"><a href class="dropdown-toggle admin-toggle" ng-click="infoAppointment(appointments._id)"><i class="fa fa-info"></i></a></li>
+            <li ng-show="editPermission"><a href class="dropdown-toggle admin-toggle" ng-click="CreateOrder(appointments._id)"><i class="fa fa-list"></i></a></li>
+            <li><a href class="dropdown-toggle admin-toggle" ng-click="editAppointment(appointments._id)"><i class="fa fa-edit"></i></a></li>
+            <!-- <li><a href class="dropdown-toggle admin-toggle" ng-click="historyVehicle(vehicles._id)"><i class="fa fa-history"></i></a></li> -->
+        </ul>
+    </div>
+</div>
+<div>
+    <div class="modal-body">
+        <form>
+            <div class="panel">
+                <div class="panel-body">
+                    <label for="vehicle_Details">APPOINTMENT DETAILS</label>
+                        <div class="row">  
+                            <div class="col-md-6">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><b>Vehicle Number:</b></td>
+                                            <td>{{appointments.vehicle_num}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Vehicle Owner:</b></td>
+                                            <td>{{user}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Manufacturer:</b></td>
+                                            <td>{{appointments.vehicle_brand}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Model:</b></td>
+                                            <td>{{appointments.vehicle_model}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Booking Date:</b></td>
+                                            <td>{{appointments.Booking_date | date: "EEEE, MMMM d, y"}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Appointment Date:</b></td>
+                                            <td>{{appointments.appointment_date | date: "EEEE, MMMM d, y"}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Appointment Time:</b></td>
+                                            <td>{{appointments.appointment_time | date: "h:mm a"}}</td>
+                                        </tr>
+                                        <tr ng-show="worNam">
+                                            <td><b>Workshop:</b></td>
+                                            <td>{{Partner}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Description:</b></td>
+                                            <td>{{appointments.description}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>   
+                            </div>
+                            <div class="col-md-6">
+                            <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><b>Image:</b></td>
+                                            <td ng-repeat="vehicleImage in appointments.vehicle_img">
+                                                <img class="img-responsive img-thumbnail pull-centar" style="
+                                                height: 170px; width: 170px;" src="images/{{vehicleImage.image}}" alt="">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>    
+                            </div>
+                        </div>
+                </div>
+            </div>    
+        </form>
+    </div>
+    <div class="modal-footer" ng-show="editPermission">
+        <button class="btn btn-primary btn-rounded" ng-click="CreateOrder(appointments._id)">Create Order</button>
+    </div>
+</div>

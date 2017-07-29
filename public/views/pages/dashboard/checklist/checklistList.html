@@ -1,0 +1,40 @@
+<div class="conter-wrapper">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<table class="table table-striped" style="margin-top: 20px;">
+						<thead style="background-color: black;">
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Status</th>
+								<th>Edit</th>
+								<th>Remove</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="checklist in checklists | startFrom:currentPage*pageSize | limitTo:pageSize ">
+								<td>{{(currentPage*pageSize)+ $index + 1}}</td>
+								<td>{{checklist.checklist_item}}</td>
+								<td>{{checklist.checklist_status}}</td>
+								<td>
+									<button class="btn btn-primary btn-rounded" ng-click="editChecklist(checklist._id)">Edit</button>&nbsp;</td>
+								<td>
+									<button class="btn btn-danger btn-rounded" ng-click="removeChecklist(checklist._id)">Remove</button>
+								</td>
+	                        </tr>
+						</tbody>
+					</table>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>

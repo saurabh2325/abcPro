@@ -1,0 +1,48 @@
+<div class="conter-wrapper">
+	<div class="row">
+		<div ng-repeat="order in orders | orderBy: '-create_date' | startFrom:currentPage*pageSize | limitTo:pageSize " class="col-md-4 view_summry">
+            <div class="panel">
+                <div class="panel-body img_setting">
+                    <div class="img_div img_div_order">
+                        <img class="img-responsive img-thumbnail pull-left" src="images/userdefalt.png" alt=""> 
+                    </div>
+                    <div class="u_detailpanel">
+                        <h4 ng-click="infoOrder(order._id)" style="cursor: pointer;"> {{order.vehicle_num}}</h4>
+                        <div class="u_detail">
+                            <span>{{order.vehicle_brand}}-{{order.vehicle_model}}</span>
+                        </div>
+                        <div class="u_detail">
+                            <span>{{order.order_status}}</span>
+                        </div>
+                        <div class="u_detail">
+                            <span>{{order.task_complete}}</span>
+                        </div>
+                        <div class="u_detail">
+                            <span>{{order.total_Amount }}</span>
+                        </div>
+                        <div class="u_detail">
+                            <span>{{order.create_date | date: "MMMM d, y"}}</span>    
+                        </div>
+                        <div class="u_detail">
+                            <span>{{order.delivery_status}}</span>    
+                        </div>
+                        <!-- ng-if="order.delivery_status == Delivered" -->
+                    </div>
+                    <div class="thumbnail_btn">
+                        <ul>
+                            <li ng-if="order.delivery_status != 'Delivered'" ><button class="btn btn-rounded btn-primary Nav_btn"><a href ng-click="editOrder(order._id)" style="color: #fff;">Edit</a></button></li>
+                            <li><button class="btn btn-rounded btn-warning Nav_btn"><a href ng-click="infoOrder(order._id)" style="color: #fff;" >View</a></button></li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </div>   
+	</div>
+</div>
+<div class="pagination" >
+   <ul class="pager no-m-t">
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button></li>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <li><button class="btn btn-warning btn-rounded" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button></li>
+    </ul>
+</div>
