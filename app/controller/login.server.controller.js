@@ -13,8 +13,8 @@
 
  var options = {
   auth: {
-    api_user: 'saurabh2318',
-    api_key: 'saurabh2325'
+    api_user: '****',
+    api_key: '*****'
   }
 }
 
