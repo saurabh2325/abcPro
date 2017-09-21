@@ -61,7 +61,7 @@ app.use('/', Appointment);
 app.use('/', Checklist);
 app.use('/', Tax);
 
-var db = "mongodb://test:test123@ds113650.mlab.com:13650/autoworkshop";
+var db = "mongodb://localhost/autoworkshop";
 
   mongoose.connect(db, function(err, response){
     if(err){
