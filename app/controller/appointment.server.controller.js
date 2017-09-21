@@ -11,8 +11,8 @@ var nodemailer = require('nodemailer');
 var options = {
       service: 'Gmail',
       auth: {
-        user: 'saurabh.sixthsense@gmail.com',
-        pass: 'saurabh2325'
+        user: 'abc@gmail.com',
+        pass: '*******'
       }
 }
 var client = nodemailer.createTransport(options);
