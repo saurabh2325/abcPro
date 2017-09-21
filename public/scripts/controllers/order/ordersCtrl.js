@@ -80,32 +80,6 @@ angular.module('dashyAngular')
 
   $scope.createPermission = false;
   $scope.deletePermission = false;
-
-  if(Auth.isLoggedIn()){
-    console.log('success: User is logged in.');
-    User.getPermission().then(function(response){
-      console.log(response);
-      var permission = response.data.data.permission;
-      if(permission == 'Admin'){
-        console.log('Admin');
-        $scope.createPermission = true;
-        $scope.editPermission = true;
-        $scope.deletePermission = true;
-      }else if(permission == 'Partner'){
-        console.log('Partner');
-        $scope.createPermission = true;
-        $scope.editPermission = true;
-        $scope.deletePermission = false;  
-      }else if(permission == 'Consumer'){
-        console.log('Consumer');
-        $scope.createPermission = false;
-        $scope.editPermission = true;
-        $scope.deletePermission = false;      
-      }
-    }) 
-  }else{
-    console.log('Failure: User is NOT logged in.');
-  }
   
   $scope.currentPage = 0;
   $scope.pageSize = 9;
@@ -124,12 +98,12 @@ angular.module('dashyAngular')
           console.log($scope.orders);
         });
       }else if(permission == "Partner"){
-        $http.get('/partnerOrdersList/' + uid).success(function(response){
+        $http.get('/ordersList' + uid).success(function(response){
           $scope.orders = response;
           console.log($scope.orders);
         });
       }else if(permission == "Consumer"){
-          $http.get('/consumerOrdersList/' + uid).success(function(response){
+          $http.get('/ordersList' + uid).success(function(response){
             $scope.orders = response;
             console.log($scope.orders);
           });
