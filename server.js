@@ -3,7 +3,7 @@ var express = require('express');
 var expressValidator = require('express-validator');
 var ejs = require('ejs');
 var app = express();
-//var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
@@ -76,8 +76,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
   
-/*app.listen(port, function(){
+app.listen(port, function(){
   console.log('Running the server on port:'+ port);
-});*/
-app.listen(3001, '139.59.66.65');
-console.log('Running the server on port:http://139.59.66.65:3001');
+});
+
