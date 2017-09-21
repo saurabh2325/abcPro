@@ -25,8 +25,8 @@ module.exports = function(app, passport){
     });
   	
   	passport.use(new FacebookStrategy({
-        clientID: '978699745596646',
-        clientSecret: '4d4bea3827ec05f077fb3afefeff1ef1',
+        clientID: '*****',
+        clientSecret: '*****',
         callbackURL: "https://localhost:8000/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
@@ -46,8 +46,8 @@ module.exports = function(app, passport){
     ));
 
     passport.use(new TwitterStrategy({
-      consumerKey:  "lcMqW1VfM1qstkUAcSTfiit7v",
-      consumerSecret: "zBKMQofka3zDaNPVuL37iue5RkOGs1AXC4S9DfbpUbsJhELTg7",
+      consumerKey:  "*****",
+      consumerSecret: "******",
       callbackURL: "https://localhost:8000/auth/twitter/callback",
       userProfileURL: "https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true"
     },
@@ -67,8 +67,8 @@ module.exports = function(app, passport){
     ));
 
     passport.use(new GoogleStrategy({
-      clientID:  "546546719802-uobtrg8ejkd5qgmeq8qvumrg0j5g0ind.apps.googleusercontent.com",
-      clientSecret: "i3B8MyuyuQiOGSAMQ4swoneu",
+      clientID:  "*****",
+      clientSecret: "*******",
       callbackURL: "https://localhost:8000/auth/google/callback"
     },
       function(accessToken, refreshToken, profile, done) {
